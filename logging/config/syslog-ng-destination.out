@@ -1,0 +1,1 @@
+  destination d_stdout { pipe("/dev/stdout"); };
