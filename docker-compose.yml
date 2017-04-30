@@ -1,8 +1,3 @@
-# Author: Jonny Langefeld
-# Docker Version: 1.13.0
-# Docker Compose Version: 1.10.1
-#
-
 version: "3"
 
 services:
@@ -21,16 +16,5 @@ services:
     haproxy:
         build: ./haproxy
         container_name: haproxy
-        volumes:
-            - logging:/sidecar
         ports:
             - "80:80"
-
-    syslog-sidecar:
-        build: ./logging
-        container_name: logging
-        volumes:
-            - logging:/sidecar
-
-volumes:
-    logging:

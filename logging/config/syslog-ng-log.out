@@ -1,1 +1,0 @@
-log { source(s_all); destination(d_stdout); };

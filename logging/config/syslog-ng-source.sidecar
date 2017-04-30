@@ -1,2 +1,0 @@
-# sidecar log source for mounting between docker containers
-  unix-dgram("/sidecar/log");
