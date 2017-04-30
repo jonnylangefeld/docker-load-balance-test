@@ -11,6 +11,6 @@ COPY startup.sh /startup.sh
 RUN chmod +x /startup.sh
 
 #COPY haproxy.cfg /usr/local/etc/haproxy/haproxy.cfg
-COPY haproxy.pem /localcert/haproxy.pem
+#COPY haproxy.pem /localcert/haproxy.pem
 
 CMD ["/bin/sh", "/startup.sh"]
