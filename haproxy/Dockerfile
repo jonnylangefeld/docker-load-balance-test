@@ -2,14 +2,12 @@ FROM haproxy:1.7
 
 COPY ./certbot /certbot
 
-RUN echo {EMAIL}
-
-RUN echo $EMAIL
-
 RUN apt-get update \
     && apt-get install -y cron
 
-RUN /certbot/certbot-auto certonly --standalone --agree-tos -m ${EMAIL} -n -d ${EXTERNAL_URL} \
-    && echo '@monthly root /certbot/certbot-auto certonly --quiet --standalone --renew-by-default -d ${EXTERNAL_URL} >> /var/log/certbot/certbot-auto-update.log' | tee --append /etc/crontab
+COPY startup.sh /startup.sh
+RUN chmod +x /startup.sh
 
 COPY haproxy.cfg /usr/local/etc/haproxy/haproxy.cfg
+
+CMD ["/bin/sh", "/startup.sh"]
