@@ -24,8 +24,8 @@ services:
         volumes:
             - logging:/sidecar
         environment:
-            - EMAIL: ${EMAIL:-jonathan.langefeld@smart-energy.de}
-            - EXTERNAL_URL: ${EXTERNAL_URL:-docker-test.energy-smart.de}
+            EMAIL: ${EMAIL:-jonathan.langefeld@smart-energy.de}
+            EXTERNAL_URL: ${EXTERNAL_URL:-docker-test.energy-smart.de}
         ports:
             - "80:80"
             - "443:443"
