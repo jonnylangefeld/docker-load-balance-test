@@ -21,7 +21,7 @@ if ${USE_LOCAL_CERT}; then
     echo "    redirect scheme https if !{ ssl_fc }"; \
     } >> /usr/local/etc/haproxy/haproxy.cfg
 elif ${GEN_CERT}; then
-/certbot/certbot-auto certonly --standalone --agree-tos -m ${EMAIL} -n -d ${EXTERNAL_URL}
+/certbot/certbot-auto certonly --standalone --agree-tos -m ${EMAIL} -n --no-bootstrap -d ${EXTERNAL_URL}
 cat /etc/letsencrypt/live/${EXTERNAL_URL}/cert.pem /etc/letsencrypt/live/${EXTERNAL_URL}/privkey.pem > /etc/letsencrypt/live/${EXTERNAL_URL}/haproxy.pem
 cp /etc/letsencrypt/live/${EXTERNAL_URL}/haproxy.pem /localcert/haproxy.pem
 { \
