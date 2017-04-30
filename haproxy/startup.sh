@@ -16,7 +16,7 @@ echo "    bind *:80"; \
 } >> /usr/local/etc/haproxy/haproxy.cfg
 if ${GEN_CERT}; then
     /certbot/certbot-auto certonly --standalone --agree-tos -m ${EMAIL} -n -d ${EXTERNAL_URL}
-    cat /etc/letsencrypt/live/${EXTERNAL_URL}/cert.pem privkey.pem > haproxy.pem
+    cat /etc/letsencrypt/live/${EXTERNAL_URL}/cert.pem /etc/letsencrypt/live/${EXTERNAL_URL}/privkey.pem > haproxy.pem
     { \
     echo "    bind *:443 ssl crt /etc/letsencrypt/live/${EXTERNAL_URL}/haproxy.pem"; \
     echo "    redirect scheme https if !{ ssl_fc }"; \
