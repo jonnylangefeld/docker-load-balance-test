@@ -13,7 +13,7 @@ echo "    timeout server 50000ms"; \
 
 echo "frontend http-in"; \
 echo "    bind *:80"; \
-} >> /usr/local/etc/haproxy/haproxy.cfg
+} > /usr/local/etc/haproxy/haproxy.cfg
 if ${GEN_CERT}; then
     /certbot/certbot-auto certonly --standalone --agree-tos -m ${EMAIL} -n -d ${EXTERNAL_URL}
     cat /etc/letsencrypt/live/${EXTERNAL_URL}/cert.pem /etc/letsencrypt/live/${EXTERNAL_URL}/privkey.pem > /etc/letsencrypt/live/${EXTERNAL_URL}/haproxy.pem
