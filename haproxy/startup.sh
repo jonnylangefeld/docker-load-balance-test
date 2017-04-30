@@ -17,7 +17,7 @@ echo "    bind *:80"; \
 if ${USE_LOCAL_CERT}; then
     mv /localcert/haproxy.pem /etc/letsencrypt/live/${EXTERNAL_URL}/haproxy.pem
     { \
-    echo "    bind *:443 ssl crt /etc/letsencrypt/live/${EXTERNAL_URL}/haproxy.pem"; \
+    echo "    bind *:443 ssl crt /localcert/haproxy.pem"; \
     echo "    redirect scheme https if !{ ssl_fc }"; \
     } >> /usr/local/etc/haproxy/haproxy.cfg
 elif ${GEN_CERT}; then
@@ -25,7 +25,7 @@ elif ${GEN_CERT}; then
 cat /etc/letsencrypt/live/${EXTERNAL_URL}/cert.pem /etc/letsencrypt/live/${EXTERNAL_URL}/privkey.pem > /etc/letsencrypt/live/${EXTERNAL_URL}/haproxy.pem
 { \
 echo "    bind *:443 ssl crt /etc/letsencrypt/live/${EXTERNAL_URL}/haproxy.pem"; \
-echo "    redirect scheme https if !{ ssl_fc }"; \
+#echo "    redirect scheme https if !{ ssl_fc }"; \
 } >> /usr/local/etc/haproxy/haproxy.cfg
 else
     echo "don't create ssl certificate"
@@ -48,4 +48,4 @@ echo "    reqrep ^([^\ ]*\ /)web2[/]?(.*)     \1\2"; \
 echo "    server web2 web2:80 check"; \
 } >> /usr/local/etc/haproxy/haproxy.cfg
 echo "@monthly root /certbot/certbot-auto certonly --quiet --standalone --renew-by-default -d ${EXTERNAL_URL} >> /var/log/certbot/certbot-auto-update.log" | tee --append /etc/crontab
-haproxy -f /usr/local/etc/haproxy/haproxy.cfg
+haproxy -f -d /usr/local/etc/haproxy/haproxy.cfg

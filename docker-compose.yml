@@ -23,7 +23,7 @@ services:
         container_name: haproxy
         volumes:
             - logging:/sidecar
-            - certs:/etc/letsencrypt/live/${EXTERNAL_URL:-docker-test.energy-smart.de}
+            - certs:/localcert
         environment:
             USE_LOCAL_CERT: ${USE_LOCAL_CERT:-false}
             GEN_CERT: ${GEN_CERT:-true}
