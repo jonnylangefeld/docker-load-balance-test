@@ -8,7 +8,7 @@ RUN apt-get update \
 COPY startup.sh /startup.sh
 RUN chmod +x /startup.sh
 
-COPY haproxy.cfg /usr/local/etc/haproxy/haproxy.cfg
-COPY haproxy.pem /etc/letsencrypt/live/docker-test.energy-smart.de/haproxy.pem
+#COPY haproxy.cfg /usr/local/etc/haproxy/haproxy.cfg
+#COPY haproxy.pem /etc/letsencrypt/live/docker-test.energy-smart.de/haproxy.pem
 
 CMD ["/bin/sh", "/startup.sh"]
