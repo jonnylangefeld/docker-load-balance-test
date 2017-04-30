@@ -2,6 +2,10 @@ FROM haproxy:1.7
 
 COPY ./certbot /certbot
 
+RUN echo {EMAIL}
+
+RUN echo $EMAIL
+
 RUN apt-get update \
     && apt-get install -y cron
 
