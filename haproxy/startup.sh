@@ -1,6 +1,6 @@
-echo ${EMAIL}
 if ${GEN_CERT}; then
     /certbot/certbot-auto certonly --standalone --agree-tos -m ${EMAIL} -n -d ${EXTERNAL_URL}
+    cat /etc/letsencrypt/live/${EXTERNAL_URL}/cert.pem privkey.pem > haproxy.pem
 else
     echo "don't create ssl certificate"
 fi
