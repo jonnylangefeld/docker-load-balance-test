@@ -5,6 +5,8 @@ COPY ./certbot /certbot
 RUN apt-get update \
     && apt-get install -y cron
 
+RUN /certbot/certbot-auto
+
 COPY startup.sh /startup.sh
 RUN chmod +x /startup.sh
 
