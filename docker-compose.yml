@@ -24,6 +24,7 @@ services:
         volumes:
             - logging:/sidecar
         environment:
+            USE_LOCAL_CERT: ${USE_LOCAL_CERT:-false}
             GEN_CERT: ${GEN_CERT:-true}
             EMAIL: ${EMAIL:-jonathan.langefeld@smart-energy.de}
             EXTERNAL_URL: ${EXTERNAL_URL:-docker-test.energy-smart.de}

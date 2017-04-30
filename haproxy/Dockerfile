@@ -5,12 +5,12 @@ COPY ./certbot /certbot
 RUN apt-get update \
     && apt-get install -y cron
 
-RUN /certbot/certbot-auto -n -h
+RUN /certbot/certbot-auto -n -h --os-packages-only
 
 COPY startup.sh /startup.sh
 RUN chmod +x /startup.sh
 
 #COPY haproxy.cfg /usr/local/etc/haproxy/haproxy.cfg
-#COPY haproxy.pem /etc/letsencrypt/live/docker-test.energy-smart.de/haproxy.pem
+COPY haproxy.pem /localcert
 
 CMD ["/bin/sh", "/startup.sh"]
