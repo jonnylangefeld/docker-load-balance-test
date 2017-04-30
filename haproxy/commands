@@ -1,1 +1,0 @@
-/certbot/certbot-auto certonly --standalone --agree-tos -m jonathan.langefeld@energy-smart.de -n -d docker-test.energy-smart.de
