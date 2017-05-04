@@ -18,27 +18,9 @@ services:
         ports:
             - "82:80"
 
-    haproxy:
-        build: ./haproxy
-        container_name: haproxy
-        volumes:
-            - logging:/sidecar
-            - certs:/localcert
-        environment:
-            USE_LOCAL_CERT: ${USE_LOCAL_CERT:-false}
-            GEN_CERT: ${GEN_CERT:-true}
-            EMAIL: ${EMAIL:-jonathan.langefeld@smart-energy.de}
-            EXTERNAL_URL: ${EXTERNAL_URL:-docker-test.energy-smart.de}
+    apache:
+        build: ./apache
+        container_name: apache
         ports:
             - "80:80"
             - "443:443"
-
-    syslog-sidecar:
-        build: ./logging
-        container_name: logging
-        volumes:
-            - logging:/sidecar
-
-volumes:
-    logging:
-    certs:
